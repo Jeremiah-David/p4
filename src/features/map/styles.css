@@ -1,0 +1,20 @@
+.tile {
+    display: inline-flex;
+    
+}
+
+.space {
+    background-color: black;
+}
+
+
+.spacestation {
+    background-color: blue;
+
+}
+
+
+.planet {
+    background-color: blueviolet;
+
+}
