@@ -117,17 +117,18 @@ function Hand() {
                     }}
 
                 />
-                {emoji !== null ? <img src={images[testpng]} style={{
+                {testpng !== null ? <img src={images[testpng]} style={{
                     position: 'absolute',
                     marginLeft: 'auto',
                     marginRight: 'auto',
-                    left: 400,
+                    
+                    top: 500,
                     bottom:500,
-                    right: 0,
+                    right: 700,
                     textAlign: "center",
                     zindex: 9,
-                    width: 640,
-                    height: 480,
+                    width: 200,
+                    height: 200,
                 }} />:''}
 
 
