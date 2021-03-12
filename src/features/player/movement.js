@@ -15,8 +15,11 @@ export default function handleMovement(player) {
 
     function thumbs_upMove() {
         
-            console.log('1111', store.getState().hand)
-            return attemptMove('WEST')
+            if (store.getState().hand.hand == 'victory'){
+            return attemptMove('EAST')
+            } else if (store.getState().hand.hand == 'thumbs_up') {
+                return attemptMove('SOUTH')
+            }
         
         
     }
