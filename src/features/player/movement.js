@@ -11,11 +11,12 @@ import React, { useState } from 'react';
 
 export default function handleMovement(player) {
     
-let thumbs_up = store.getState().hand.hand
+// store.getState().hand
 
-    function thumbs_upMove(thumbs_up) {
+    function thumbs_upMove() {
         
-            console.log(1111, thumbs_up)
+            console.log('1111', store.getState().hand)
+            return attemptMove('WEST')
         
         
     }
@@ -83,7 +84,7 @@ function observeImpassable(oldPos, newPos ) {
         e.preventDefault()
         switch (e.keyCode) {
             case 65:
-                thumbs_upMove() 
+                // thumbs_upMove() 
                 return attemptMove('WEST')
             case 87:
                 return attemptMove('NORTH')
