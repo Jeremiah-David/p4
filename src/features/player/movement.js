@@ -1,7 +1,27 @@
 import store from '../../config/store'
 import { SPRITE_SIZE, Map_Height, Map_Width } from '../../config/constants'
+import React, { useState } from 'react';
+
+
+
+// const [handPlace, sethandPlace] 
+
+
+
 
 export default function handleMovement(player) {
+    
+let thumbs_up = store.getState().hand.hand
+
+    function thumbs_upMove(thumbs_up) {
+        
+            console.log(1111, thumbs_up)
+        
+        
+    }
+    store.subscribe(thumbs_upMove)
+
+
 
 
 
@@ -63,6 +83,7 @@ function observeImpassable(oldPos, newPos ) {
         e.preventDefault()
         switch (e.keyCode) {
             case 65:
+                thumbs_upMove() 
                 return attemptMove('WEST')
             case 87:
                 return attemptMove('NORTH')

@@ -1,4 +1,6 @@
 import React, { useRef, useState } from 'react'
+import { connect } from 'react-redux'
+import store from '../config/store'
 
 import * as tf from '@tensorflow/tfjs'
 import * as handpose from "@tensorflow-models/handpose"
@@ -20,7 +22,7 @@ function Hand() {
     const webcamRef = useRef(null)
     const canvasRef = useRef(null)
 
-    const [testpng, settestpng] = useState(null)
+    const [hand, sethand] = useState(null)
     const images = { thumbs_up: thumbs_up, victory: victory }
 
 
@@ -30,7 +32,7 @@ function Hand() {
         // Loop and detect hands
         setInterval(() => {
             detect(net)
-        }, 100)
+        }, 10)
     }
 
     const detect = async (net) => {
@@ -67,8 +69,16 @@ function Hand() {
                 if (gesture.gestures !== undefined && gesture.gestures.length > 0) {
                     const confidence = gesture.gestures.map((prediction) => prediction.confidence)
                     const maxConfidence = confidence.indexOf(Math.max.apply(null, confidence))
-                    settestpng(gesture.gestures[maxConfidence].name)
-                    console.log(testpng)
+                    sethand(gesture.gestures[maxConfidence].name)
+                    store.dispatch({
+                        type: 'HAND_ACTION',
+                        payload: {
+                            hand: gesture.gestures[maxConfidence].name
+            
+                        }
+            
+                    })
+                    console.log(hand)
                 }
 
             }
@@ -76,6 +86,8 @@ function Hand() {
             // draw mesh
             const ctx = canvasRef.current.getContext('2d')
             drawHand(hand, ctx)
+
+            
 
         }
     }
@@ -117,14 +129,14 @@ function Hand() {
                     }}
 
                 />
-                {testpng !== null ? <img src={images[testpng]} style={{
+                {hand !== null ? <img src={images[hand]} style={{
                     position: 'absolute',
                     marginLeft: 'auto',
                     marginRight: 'auto',
                     
                     top: 500,
                     bottom:500,
-                    right: 700,
+                    right: 200,
                     textAlign: "center",
                     zindex: 9,
                     width: 200,
@@ -143,4 +155,12 @@ function Hand() {
     )
 }
 
-export default Hand
+function    mapStatetoProps(state) {
+    return {
+        hands: state.hand
+    }
+}
+
+export default connect(mapStatetoProps)(Hand)
+
+// export default Hand

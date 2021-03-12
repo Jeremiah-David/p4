@@ -3,6 +3,7 @@ import { connect } from 'react-redux'
 import ships from './ships.png'
 import handleMovement from './movement'
 
+
 function Player(props) {
     return (
         <div
