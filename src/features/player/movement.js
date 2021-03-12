@@ -15,7 +15,7 @@ export default function handleMovement(player) {
 
     function thumbs_upMove() {
 
-        if (store.getState().hand.hand == 'victory') {
+        if (store.getState().hand.hand == 'point_up') {
             store.dispatch({
                 type: 'HAND_ACTION',
                 payload: {
@@ -30,11 +30,49 @@ export default function handleMovement(player) {
 
             }
             //    return attemptMove('EAST')
-        } else if (store.getState().hand.hand == 'thumbs_up') {
-            return attemptMove('SOUTH')
+        } else if (store.getState().hand.hand == 'fist') {
+            store.dispatch({
+                type: 'HAND_ACTION',
+                payload: {
+                    hand: [],
+                }
+            })
+            let i = 0
+            for (i = 0; i < 6; i++) {
+                return attemptMove('EAST')
+
+
+            }
+        } else if (store.getState().hand.hand == 'leftGesture') {
+            store.dispatch({
+                type: 'HAND_ACTION',
+                payload: {
+                    hand: [],
+                }
+            })
+            let i = 0
+            for (i = 0; i < 6; i++) {
+                return attemptMove('WEST')
+
+
+            }
+        } else if (store.getState().hand.hand == 'button') {
+            store.dispatch({
+                type: 'HAND_ACTION',
+                payload: {
+                    hand: [],
+                }
+            })
+            let i = 0
+            for (i = 0; i < 6; i++) {
+                return attemptMove('SOUTH')
+
+
+            }
+
+
+
         }
-
-
     }
     store.subscribe(thumbs_upMove)
 

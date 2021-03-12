@@ -3,22 +3,51 @@ import { connect } from 'react-redux'
 import store from '../config/store'
 
 import * as tf from '@tensorflow/tfjs'
+
 import * as handpose from "@tensorflow-models/handpose"
 import Webcam from 'react-webcam'
 import '../App.css'
 import { drawHand } from './utilities'
 
 //import my test images!
+
 import * as fp from "fingerpose"
 import victory from '../hellyah.png'
 import thumbs_up from '../thumbsup.png'
+
+// import some custom handsignals yo!
+import { loveYouGesture } from './signals/LoveYou'
+import { thumbsDownGesture } from './signals/ThumbDown'
+import { forwardGesture } from './signals/Forword'
+import { fistGesture } from './signals/Fist'
+import { leftGesture } from './signals/Left'
+import { buttonGesture } from './signals/Button'
+import { pointUpGesture } from './signals/PointUp'
+
+
+
+
 
 
 
 
 function Hand() {
-
-
+    
+    
+    
+    // function addGesture() {
+    // const thumbsDownGesture = new fp.GestureDescription('thumbs_down')
+    
+    // thumbsDownGesture.addCurl(fp.Finger.Thumb, fp.FingerCurl.NoCurl, 1.0)
+    // thumbsDownGesture.addDirection(fp.Finger.Thumb, fp.FingerDirection.VerticalDown, 1.0)
+    // thumbsDownGesture.addDirection(fp.Finger.Thumb, fp.FingerDirection.DiagonalDownLeft, 0.5)
+    // thumbsDownGesture.addDirection(fp.Finger.Thumb, fp.FingerDirection.DiagonalDownRight, 0.5)
+    // thumbsDownGesture.addCurl(fp.Finger.Index, fp.FingerCurl.FullCurl, 1.0)
+    // thumbsDownGesture.addCurl(fp.Finger.Middle, fp.FingerCurl.FullCurl, 1.0)
+    // thumbsDownGesture.addCurl(fp.Finger.Ring, fp.FingerCurl.FullCurl, 1.0)
+    // thumbsDownGesture.addCurl(fp.Finger.Pinky, fp.FingerCurl.FullCurl, 1.0)
+    // }
+    // addGesture()
     const webcamRef = useRef(null)
     const canvasRef = useRef(null)
 
@@ -32,11 +61,12 @@ function Hand() {
         // Loop and detect hands
         setInterval(() => {
             detect(net)
-        }, 10)
+        }, 500)
     }
 
     const detect = async (net) => {
         // Check if data is available
+       
         if (
             typeof webcamRef.current !== "undefined" &&
             webcamRef.current !== null &&
@@ -56,12 +86,21 @@ function Hand() {
 
             // make detections
             const hand = await net.estimateHands(video)
-            // console.log(hand)
+            console.log(hand)
 
             if (hand.length > 0) {
                 const GE = new fp.GestureEstimator([
+                    loveYouGesture,
                     fp.Gestures.VictoryGesture,
                     fp.Gestures.ThumbsUpGesture,
+                    // thumbsDownGesture,
+                    // forwardGesture,
+                    fistGesture,
+                    leftGesture,
+                    buttonGesture,
+                    pointUpGesture,
+                    leftGesture,
+                    // console.log('!!!!!', + fp.Gestures)
                 ])
 
                 const gesture = await GE.estimate(hand[0].landmarks, 8)
