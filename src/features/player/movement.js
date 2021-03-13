@@ -15,7 +15,7 @@ export default function handleMovement(player) {
 
     function thumbs_upMove() {
 
-        if (store.getState().hand.hand == 'point_up') {
+        if (store.getState().hand.hand == 'fist') {
             store.dispatch({
                 type: 'HAND_ACTION',
                 payload: {
@@ -56,7 +56,7 @@ export default function handleMovement(player) {
 
 
             }
-        } else if (store.getState().hand.hand == 'point_down') {
+        } else if (store.getState().hand.hand == 'forward') {
             store.dispatch({
                 type: 'HAND_ACTION',
                 payload: {

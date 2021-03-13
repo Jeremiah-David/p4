@@ -2,9 +2,9 @@ import React, { useRef, useState } from 'react'
 import { connect } from 'react-redux'
 import store from '../config/store'
 import * as tfconv from '@tensorflow/tfjs-converter';
-import * as tf from '@tensorflow/tfjs-core';
+// import * as tf from '@tensorflow/tfjs-core';
 
-
+import * as tf from '@tensorflow/tfjs'
 
 import * as handpose from "@tensorflow-models/handpose"
 import Webcam from 'react-webcam'
@@ -95,17 +95,17 @@ function Hand() {
 
             if (hand.length > 0) {
                 const GE = new fp.GestureEstimator([
-                    loveYouGesture,
-                    fp.Gestures.VictoryGesture,
-                    fp.Gestures.ThumbsUpGesture,
+                    // loveYouGesture,
+                    // fp.Gestures.VictoryGesture,
+                    // fp.Gestures.ThumbsUpGesture,
                     // thumbsDownGesture,
-                    // forwardGesture,
+                    forwardGesture,
                     fistGesture,
-                    leftGesture,
+                    // leftGesture,
                     // buttonGesture,
-                    upGesture,
-                    downGesture,
-                    rightGesture,
+                    // upGesture,
+                    // downGesture,
+                    // rightGesture,
                     // leftGesture,
                     // console.log('!!!!!', + fp.Gestures)
                 ])
