@@ -1,8 +1,10 @@
 import React, { useRef, useState } from 'react'
 import { connect } from 'react-redux'
 import store from '../config/store'
+import * as tfconv from '@tensorflow/tfjs-converter';
+import * as tf from '@tensorflow/tfjs-core';
 
-import * as tf from '@tensorflow/tfjs'
+
 
 import * as handpose from "@tensorflow-models/handpose"
 import Webcam from 'react-webcam'
@@ -22,7 +24,10 @@ import { forwardGesture } from './signals/Forword'
 import { fistGesture } from './signals/Fist'
 import { leftGesture } from './signals/Left'
 import { buttonGesture } from './signals/Button'
-import { pointUpGesture } from './signals/PointUp'
+import { upGesture } from './signals/PointUp'
+import { rightGesture} from './signals/PointRight'
+import { downGesture } from './signals/PointDown'
+
 
 
 
@@ -97,9 +102,11 @@ function Hand() {
                     // forwardGesture,
                     fistGesture,
                     leftGesture,
-                    buttonGesture,
-                    pointUpGesture,
-                    leftGesture,
+                    // buttonGesture,
+                    upGesture,
+                    downGesture,
+                    rightGesture,
+                    // leftGesture,
                     // console.log('!!!!!', + fp.Gestures)
                 ])
 

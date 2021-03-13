@@ -5,7 +5,7 @@ import {Finger, FingerCurl, FingerDirection, GestureDescription} from 'fingerpos
 
 
 
-export const leftGesture = new fp.GestureDescription('left')
+export const leftGesture = new fp.GestureDescription('point_left')
     
 leftGesture.addCurl(fp.Finger.Thumb, fp.FingerCurl.FullCurl, 1.0)
 // fistGesture.addDirection(fp.Finger.Thumb, fp.FingerDirection.VerticalUp, 1.0)

@@ -30,7 +30,7 @@ export default function handleMovement(player) {
 
             }
             //    return attemptMove('EAST')
-        } else if (store.getState().hand.hand == 'fist') {
+        } else if (store.getState().hand.hand == 'point_right') {
             store.dispatch({
                 type: 'HAND_ACTION',
                 payload: {
@@ -43,7 +43,7 @@ export default function handleMovement(player) {
 
 
             }
-        } else if (store.getState().hand.hand == 'leftGesture') {
+        } else if (store.getState().hand.hand == 'point_left') {
             store.dispatch({
                 type: 'HAND_ACTION',
                 payload: {
@@ -56,7 +56,7 @@ export default function handleMovement(player) {
 
 
             }
-        } else if (store.getState().hand.hand == 'button') {
+        } else if (store.getState().hand.hand == 'point_down') {
             store.dispatch({
                 type: 'HAND_ACTION',
                 payload: {
