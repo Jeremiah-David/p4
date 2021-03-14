@@ -117,6 +117,7 @@ export default function handleMovement(player) {
         store.dispatch({
             type: 'MOVE_PLAYER',
             payload: {
+                name: store.getState().player.name,
                 position: newPos
 
             }

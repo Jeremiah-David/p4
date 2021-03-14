@@ -1,6 +1,6 @@
 const initialState = {
-    
-    inPos: [3, 3],
+    name: "",
+    postition: [7, 7],
 
 
 }

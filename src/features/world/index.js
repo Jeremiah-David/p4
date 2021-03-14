@@ -4,6 +4,8 @@ import Map from '../map'
 
 import { tiles } from '../../data/map/1'
 import store from '../../config/store'
+import Opponent from '../../socket/opponent'
+import { Socket } from 'socket.io-client'
 
 
 
@@ -23,6 +25,7 @@ function World(props) {
             }}>
             <Map />
             <Player />
+            <Socket />
 
         </div>
     )
