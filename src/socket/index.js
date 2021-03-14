@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import socketIOClient from "socket.io-client";
 import store from '../config/store'
-const ENDPOINT = "http://localhost:8100";
+const ENDPOINT = "https://p4s1.herokuapp.com/";
 
 
 
