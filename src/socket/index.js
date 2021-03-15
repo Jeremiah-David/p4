@@ -25,6 +25,7 @@ function Opponents(opponent) {
 
                         name: inPos.name,
                         position: inPos.position,
+                        faceing: inPos.facing, 
                         health: inPos.health
 
                     }

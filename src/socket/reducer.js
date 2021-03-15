@@ -10,6 +10,7 @@
 const initialState = {
     name: "",
     position: [100, 100],
+    facing: '',
     health: 10
 
 
