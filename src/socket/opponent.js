@@ -1,20 +1,19 @@
-// import react from 'react'
-// import { connect } from 'react-redux'
-// import ships from '../features/player/ships.png'
-// import store from '../config/store'
-// // import handleMovement from './movement'
-// import Socket from './index'
+import react from 'react'
+import { connect } from 'react-redux'
+import ships from '../features/player/ships.png'
+import store from '../config/store'
+// import handleMovement from './movement'
+import Socket from './index'
 
 
-// function Opponent(props) {
-//     console.log('45454545' , props.inPos)
-
+function Opponent(props) {
 
     
-//     return (
-       
+    return (
+<h1>asdf</h1>
+            // />
       
-//     )
-// }
+    )
+}
 
-// export default Opponent
+export default Opponent

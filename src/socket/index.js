@@ -6,7 +6,7 @@ import ships from '../features/player/ships.png'
 const ENDPOINT = "https://p4s1.herokuapp.com/";
 
 
-function Socket() {
+function Opponents(opponent) {
 
 
 
@@ -39,24 +39,27 @@ function Socket() {
     })
 
 
-    const handleName = (e) => {
-        e.preventDefault()
-        store.dispatch({
-            type: 'MOVE_PLAYER',
-            payload: {
-                name: e.target.value,
-                position: [store.getState().player.position[0], store.getState().player.position[1]]
-            }
-        })
-    }
 
-    const handleSubmit = (e) => {
-        e.preventDefault()
+
+
+
+
+    
+
+
+
+
+
+    const handleSubmit = () => {
+        // e.preventDefault()
 
         const socket = socketIOClient(ENDPOINT)
         console.log("2345", (store.getState().player.position))
         socket.emit('message', store.getState().player)
     }
+
+    store.subscribe(handleSubmit)
+
 
 
     function renderOpponent() {
@@ -66,32 +69,20 @@ function Socket() {
 
     return (
         <div>
-             <div
-                
-            style={{
-                position: 'absolute',
-                top: store.getState().inPos.postition[0],
-                left: store.getState().inPos.postition[1],
-                backgroundImage: `url('${ships}')`,
-                backgroundPostition: '25,  25',
-                width: '25px',
-                height: '25px' 
-            }}
-            />
+            
             {/* <h1>console.log({inPos}) {'****', console.log({ inPos })}</h1> */}
 
 
             < form onSubmit={handleSubmit} >
                 <div >
 
-                    <label htmlFor="Player Name">User Name</label>
-                    <input type="text" name="text" value={handleName} onChange={handleName} />
-                    <button type="submit" className="btn btn-primary float-right">Submit</button>
+
                 </div>
             </form >
         </div>
 
     )
+    return opponent
 }
 
-export default Socket
+export default Opponents
