@@ -17,14 +17,15 @@ function Opponents(opponent) {
     useEffect(() => {
         const socket = socketIOClient(ENDPOINT)
         socket.on('message', inPos => {
-            console.log('iiii', inPos)
+            // console.log('iiii', inPos)
             if (inPos.name !== store.getState().player.name) {
                 store.dispatch({
                     type: 'OTHER_PLAYER',
                     payload: {
 
                         name: inPos.name,
-                        position: inPos.position
+                        position: inPos.position,
+                        health: inPos.health
 
                     }
                 })
@@ -54,7 +55,7 @@ function Opponents(opponent) {
         // e.preventDefault()
 
         const socket = socketIOClient(ENDPOINT)
-        console.log("2345", (store.getState().player.position))
+        // console.log("2345", (store.getState().player.position))
         socket.emit('message', store.getState().player)
     }
 

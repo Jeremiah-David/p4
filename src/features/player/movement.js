@@ -75,7 +75,7 @@ export default function handleMovement(player) {
 
         }
     }
-    store.subscribe(thumbs_upMove)
+    // store.subscribe(thumbs_upMove)
 
 
 
@@ -121,6 +121,7 @@ export default function handleMovement(player) {
                 name: store.getState().player.name,
                 position: newPos,
                 facing: store.getState().player.facing,
+                health: store.getState().player.health,
 
             }
 
@@ -142,20 +143,64 @@ export default function handleMovement(player) {
         let c = store.getState().player.facing
         let x = store.getState().inPos.position[0]
         let y = store.getState().inPos.position[1]
+        let h = store.getState().inPos.health
 
-        if (c === "WEST" && b === y) {
+        if (c === "WEST" && a > y && b === x) {
+            console.log(b)
+            console.log(y)
             console.log('HIT!')
+            store.dispatch({
+                type: 'OTHER_PLAYER',
+                payload: {
+                    name: store.getState().inPos.name,
+                    position: [x, y],
+                    health: parseInt(h) -1, 
+    
+                }
+    
+            })
+            
             }
 
-        else if (c === "EAST" && b === y) {
+        else if (c === "EAST" && a < y && b === x) {
             console.log('HIT!')
+            store.dispatch({
+                type: 'OTHER_PLAYER',
+                payload: {
+                    name: store.getState().inPos.name,
+                    position: [x, y],
+                    health: parseInt(h) -1, 
+    
+                }
+    
+            })
             }
         
-        else if (c === "NORTH" && a === x) {
+        else if (c === "NORTH" && b > x && a === y) {
                 console.log('HIT!')
+                store.dispatch({
+                    type: 'OTHER_PLAYER',
+                    payload: {
+                        name: store.getState().inPos.name,
+                        position: [x, y],
+                        health: parseInt(h) -1, 
+        
+                    }
+        
+                })
                 }
-        else if (c === "SOUTH" && a === x) {
+        else if (c === "SOUTH" && b < x && a ===y) {
                     console.log('HIT!')
+                    store.dispatch({
+                        type: 'OTHER_PLAYER',
+                        payload: {
+                            name: store.getState().inPos.name,
+                            position: [x, y],
+                            health: parseInt(h) -1, 
+            
+                        }
+            
+                    })
                     }
                 }
 
@@ -177,7 +222,8 @@ export default function handleMovement(player) {
                     payload: {
                         name: store.getState().player.name,
                         position: [store.getState().player.position[0], store.getState().player.position[1]],
-                        facing: 'WEST'
+                        facing: 'WEST',
+                        health: store.getState().player.health,
                     }
                 })
 
@@ -188,7 +234,8 @@ export default function handleMovement(player) {
                     payload: {
                         name: store.getState().player.name,
                         position: [store.getState().player.position[0], store.getState().player.position[1]],
-                        facing: "NORTH"
+                        facing: "NORTH",
+                        health: store.getState().player.health,
                         }
                     })
                 return attemptMove('NORTH')
@@ -198,7 +245,8 @@ export default function handleMovement(player) {
                         payload: {
                             name: store.getState().player.name,
                             position: [store.getState().player.position[0], store.getState().player.position[1]],
-                            facing: 'EAST'
+                            facing: 'EAST',
+                            health: store.getState().player.health,
                         }
                     })
                 return attemptMove('EAST')
@@ -208,7 +256,8 @@ export default function handleMovement(player) {
                             payload: {
                                 name: store.getState().player.name,
                                 position: [store.getState().player.position[0], store.getState().player.position[1]],
-                                facing: 'SOUTH'
+                                facing: 'SOUTH',
+                                health: store.getState().player.health,
                             }
                         })
                         console.log(e.keyCode)

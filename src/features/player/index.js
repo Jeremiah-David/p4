@@ -15,13 +15,15 @@ function Player(props) {
     console.log('xxxxx', x, y)
     }
 
-    store.subscribe(updateEnemy)
+    // store.subscribe(updateEnemy)
 
 
 
 
     return (
         <div>
+            <p>{store.getState().player.health} Player Health</p>
+            <p>{store.getState().inPos.health} Opponent Health</p>
         <div
             style={{
                 position: 'absolute',
