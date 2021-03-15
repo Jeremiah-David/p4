@@ -12,7 +12,8 @@ function Landing() {
             type: 'MOVE_PLAYER',
             payload: {
                 name: e.target.value,
-                position: [0, 0]
+                position: [0, 0],
+                facing: ""
             }
         })
         

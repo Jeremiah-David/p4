@@ -1,15 +1,15 @@
-function getRandomInt(max) {
-    return Math.floor(Math.random() * Math.floor(max));
-  }
+// function getRandomInt(max) {
+//     return Math.floor(Math.random() * Math.floor(max));
+//   }
   
-let x = getRandomInt(150)
-let y = getRandomInt(150)
+// let x = getRandomInt0)
+// let y = getRandomInt(150)
 
 
 
 const initialState = {
     name: "",
-    position: [x, y],
+    position: [100, 100],
 
 
 }

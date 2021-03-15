@@ -1,6 +1,7 @@
 import store from '../../config/store'
 import { SPRITE_SIZE, Map_Height, Map_Width } from '../../config/constants'
 import React, { useState } from 'react';
+import Action from './action'
 
 
 
@@ -111,14 +112,15 @@ export default function handleMovement(player) {
         return nextTile < 5
     }
 
-    function dispatchMove(newPos) {
+    function dispatchMove(newPos, direction) {
 
         // const oldPos = store.getState().player.position
         store.dispatch({
             type: 'MOVE_PLAYER',
             payload: {
                 name: store.getState().player.name,
-                position: newPos
+                position: newPos,
+                facing: store.getState().player.facing,
 
             }
 
@@ -134,7 +136,28 @@ export default function handleMovement(player) {
 
     }
 
+    function shoot() {
+        let a = store.getState().player.position[0]
+        let b = store.getState().player.position[1]
+        let c = store.getState().player.facing
+        let x = store.getState().inPos.position[0]
+        let y = store.getState().inPos.position[1]
 
+        if (c === "WEST" && b === y) {
+            console.log('HIT!')
+            }
+
+        else if (c === "EAST" && b === y) {
+            console.log('HIT!')
+            }
+        
+        else if (c === "NORTH" && a === x) {
+                console.log('HIT!')
+                }
+        else if (c === "SOUTH" && a === x) {
+                    console.log('HIT!')
+                    }
+                }
 
     // function handleHandMove(hand) {
     //     switch (store.getState().hand.hand) {
@@ -149,22 +172,59 @@ export default function handleMovement(player) {
         e.preventDefault()
         switch (e.keyCode) {
             case 65:
-                // thumbs_upMove() 
+                store.dispatch({
+                    type: 'MOVE_PLAYER',
+                    payload: {
+                        name: store.getState().player.name,
+                        position: [store.getState().player.position[0], store.getState().player.position[1]],
+                        facing: 'WEST'
+                    }
+                })
+
                 return attemptMove('WEST')
             case 87:
+                store.dispatch({
+                    type: 'MOVE_PLAYER',
+                    payload: {
+                        name: store.getState().player.name,
+                        position: [store.getState().player.position[0], store.getState().player.position[1]],
+                        facing: "NORTH"
+                        }
+                    })
                 return attemptMove('NORTH')
             case 68:
+                    store.dispatch({
+                        type: 'MOVE_PLAYER',
+                        payload: {
+                            name: store.getState().player.name,
+                            position: [store.getState().player.position[0], store.getState().player.position[1]],
+                            facing: 'EAST'
+                        }
+                    })
                 return attemptMove('EAST')
             case 83:
+                        store.dispatch({
+                            type: 'MOVE_PLAYER',
+                            payload: {
+                                name: store.getState().player.name,
+                                position: [store.getState().player.position[0], store.getState().player.position[1]],
+                                facing: 'SOUTH'
+                            }
+                        })
+                        console.log(e.keyCode)
                 return attemptMove('SOUTH')
+
+            case 32: 
+                        console.log('Trying to hit')
+                        shoot()
             default:
-                console.log(e.keyCode)
-        }
+                            
+                        }
     }
 
     window.addEventListener('keydown', (e) => {
-        handleKeyDown(e)
-    })
+                            handleKeyDown(e)
+                        })
 
     return player
-}
+                }
