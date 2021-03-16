@@ -16,6 +16,8 @@ import { drawHand } from './utilities'
 import * as fp from "fingerpose"
 import victory from '../hellyah.png'
 import thumbs_up from '../thumbsup.png'
+import fire from '../bluefire.png'
+import engine from '../rocket.png'
 
 // import some custom handsignals yo!
 import { loveYouGesture } from './signals/LoveYou'
@@ -37,27 +39,12 @@ import { downGesture } from './signals/PointDown'
 
 
 function Hand() {
-    
-    
-    
-    // function addGesture() {
-    // const thumbsDownGesture = new fp.GestureDescription('thumbs_down')
-    
-    // thumbsDownGesture.addCurl(fp.Finger.Thumb, fp.FingerCurl.NoCurl, 1.0)
-    // thumbsDownGesture.addDirection(fp.Finger.Thumb, fp.FingerDirection.VerticalDown, 1.0)
-    // thumbsDownGesture.addDirection(fp.Finger.Thumb, fp.FingerDirection.DiagonalDownLeft, 0.5)
-    // thumbsDownGesture.addDirection(fp.Finger.Thumb, fp.FingerDirection.DiagonalDownRight, 0.5)
-    // thumbsDownGesture.addCurl(fp.Finger.Index, fp.FingerCurl.FullCurl, 1.0)
-    // thumbsDownGesture.addCurl(fp.Finger.Middle, fp.FingerCurl.FullCurl, 1.0)
-    // thumbsDownGesture.addCurl(fp.Finger.Ring, fp.FingerCurl.FullCurl, 1.0)
-    // thumbsDownGesture.addCurl(fp.Finger.Pinky, fp.FingerCurl.FullCurl, 1.0)
-    // }
-    // addGesture()
+
     const webcamRef = useRef(null)
     const canvasRef = useRef(null)
 
     const [hand, sethand] = useState(null)
-    const images = { thumbs_up: thumbs_up, victory: victory }
+    const images = { thumbs_up: thumbs_up, victory: victory, fist: fire, forward: engine }
 
 
     const runHandpose = async () => {
@@ -66,7 +53,7 @@ function Hand() {
         // Loop and detect hands
         setInterval(() => {
             detect(net)
-        }, 500)
+        }, 17)
     }
 
     const detect = async (net) => {
@@ -91,7 +78,7 @@ function Hand() {
 
             // make detections
             const hand = await net.estimateHands(video)
-            console.log(hand)
+            // console.log(hand)
 
             if (hand.length > 0) {
                 const GE = new fp.GestureEstimator([
@@ -115,6 +102,7 @@ function Hand() {
                 if (gesture.gestures !== undefined && gesture.gestures.length > 0) {
                     const confidence = gesture.gestures.map((prediction) => prediction.confidence)
                     const maxConfidence = confidence.indexOf(Math.max.apply(null, confidence))
+                    console.log('1111', gesture.gestures.name)
                     sethand(gesture.gestures[maxConfidence].name)
                     store.dispatch({
                         type: 'HAND_ACTION',

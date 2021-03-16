@@ -8,12 +8,15 @@ function Landing() {
 
     const handleName = (e) => {
         e.preventDefault()
+        
         store.dispatch({
             type: 'MOVE_PLAYER',
             payload: {
                 name: e.target.value,
                 position: [0, 0],
-                facing: ""
+                facing: "",
+                health: store.getState().player.health
+            
             }
         })
         

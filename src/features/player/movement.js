@@ -1,7 +1,7 @@
 import store from '../../config/store'
 import { SPRITE_SIZE, Map_Height, Map_Width } from '../../config/constants'
 import React, { useState } from 'react';
-import Action from './action'
+
 
 
 
@@ -149,12 +149,14 @@ export default function handleMovement(player) {
             console.log(b)
             console.log(y)
             console.log('HIT!')
+            let damage = parseInt(h) -1
             store.dispatch({
                 type: 'OTHER_PLAYER',
                 payload: {
                     name: store.getState().inPos.name,
                     position: [x, y],
-                    health: parseInt(h) -1, 
+                    facing: store.getState().inPos.facing,
+                    health: damage, 
     
                 }
     
@@ -164,12 +166,14 @@ export default function handleMovement(player) {
 
         else if (c === "EAST" && a < y && b === x) {
             console.log('HIT!')
+            let damage = parseInt(h) -1
             store.dispatch({
                 type: 'OTHER_PLAYER',
                 payload: {
                     name: store.getState().inPos.name,
                     position: [x, y],
-                    health: parseInt(h) -1, 
+                    facing: store.getState().inPos.facing,
+                    health: damage
     
                 }
     
@@ -178,12 +182,14 @@ export default function handleMovement(player) {
         
         else if (c === "NORTH" && b > x && a === y) {
                 console.log('HIT!')
+                let damage = parseInt(h) -1
                 store.dispatch({
                     type: 'OTHER_PLAYER',
                     payload: {
                         name: store.getState().inPos.name,
                         position: [x, y],
-                        health: parseInt(h) -1, 
+                        facing: store.getState().inPos.facing,
+                        health: damage
         
                     }
         
@@ -191,12 +197,14 @@ export default function handleMovement(player) {
                 }
         else if (c === "SOUTH" && b < x && a ===y) {
                     console.log('HIT!')
+                    let damage = parseInt(h) -1
                     store.dispatch({
                         type: 'OTHER_PLAYER',
                         payload: {
                             name: store.getState().inPos.name,
                             position: [x, y],
-                            health: parseInt(h) -1, 
+                            facing: store.getState().inPos.facing,
+                            health: damage 
             
                         }
             

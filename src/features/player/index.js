@@ -9,11 +9,11 @@ function Player(props) {
     let x = store.getState().inPos.position[0]
     let y = store.getState().inPos.position[1]
 
-    function updateEnemy() {
-        let x = store.getState().inPos.position[0]
-        let y = store.getState().inPos.position[1]
-    console.log('xxxxx', x, y)
-    }
+    // function updateEnemy() {
+    //     let x = store.getState().inPos.position[0]
+    //     let y = store.getState().inPos.position[1]
+    // console.log('xxxxx', x, y)
+    // }
 
     // store.subscribe(updateEnemy)
 
@@ -22,8 +22,12 @@ function Player(props) {
 
     return (
         <div>
+            <div>
+            <p>{store.getState().player.name} Player Name</p>
             <p>{store.getState().player.health} Player Health</p>
+            <p>{store.getState().inPos.name} Opponent Name</p>
             <p>{store.getState().inPos.health} Opponent Health</p>
+            </div>
         <div
             style={{
                 position: 'absolute',

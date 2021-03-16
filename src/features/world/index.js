@@ -1,12 +1,14 @@
 import React from 'react'
 import Player from "../player"
 import Map from '../map'
+import Hand from '../../hand'
 
 import { tiles } from '../../data/map/1'
 import store from '../../config/store'
 import Opponents from '../../socket/index'
 import { Socket } from 'socket.io-client'
-import Opponent from '../../socket/opponent'
+
+
 
 
 
@@ -24,10 +26,10 @@ function World(props) {
                 height: '400px',
                 margin: '20px auto',
             }}>
-            <Map />
-            <Player />
-            <Opponent />
-            <Opponents/>
+            {/* <Map /> */}
+            {/* <Player /> */}
+            {/* <Opponents /> */}
+            <Hand />
         </div>
     )
 }
